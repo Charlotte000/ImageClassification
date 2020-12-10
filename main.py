@@ -4,6 +4,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 from tensorflow import keras
 import cv2
+import matplotlib.pyplot as plt
 
 from settings import IMAGE_SIZE
 
@@ -14,14 +15,11 @@ def loadImage(name):
     img = cv2.resize(cv2.imread(name, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
     return img
 
-import matplotlib.pyplot as plt
 
 model = load_model()
 
-
-
-for i in range(1, 13):
-    img = loadImage(f'.\\Tests\\test{i}.jpg')
+for name in os.listdir(os.path.join(".", "Tests")):
+    img = loadImage(os.path.join(".", "Tests", name))
     plt.figure()
     plt.imshow(img, cmap='gray')
     plt.axis("off")

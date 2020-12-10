@@ -1,4 +1,5 @@
 from threading import Thread
+from os.path import join
 import requests
 
 def load_image_net():
@@ -10,7 +11,8 @@ def load_image_net():
             try:
                 name = url.split('/')[-1]
                 data = requests.get(url).content
-                with open(f'.\\Data\\ImageNet\\{name}', 'wb') as write_file:
+                path = join(".", "Data", "ImageNet", name)
+                with open(path, 'wb') as write_file:
                     write_file.write(data)
             except:
                 print(f'Bad url: {url}')
@@ -28,7 +30,8 @@ def load_stanford():
             try:
                 index = str(i).zfill(3)
                 data = requests.get(url + f'{name}/{name}.{index}.jpg').content
-                with open(f'.\\Data\\Stanford\\{name}\\{name}.{index}.jpg', 'wb') as write_file:
+                path = join(".", "Data", "Stanford", name, f"{name}.{index}.jpg")
+                with open(path, 'wb') as write_file:
                     write_file.write(data)
             except:
                 print(f"Bad url: {url}{name}/{name}.{index}.jpg")

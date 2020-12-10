@@ -24,9 +24,10 @@ def load_training_data():
     data = []
 
     # Load ImageNet
-    for name in os.listdir('.\\Data\\ImageNet\\'):
+    for name in os.listdir(os.path.join(".", "Data", "ImageNet")):
         try:
-            img = cv2.resize(cv2.imread(f".\\Data\\ImageNet\\{name}", cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
+            path = os.path.join(".", "Data", "ImageNet", name)
+            img = cv2.resize(cv2.imread(path, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
             data.append([img, 1])
             data.append([rotateImage(img, -10), 1])
             data.append([rotateImage(img, 10), 1])
@@ -38,7 +39,8 @@ def load_training_data():
         for i in range(0, 200):
             index = str(i).zfill(3)
             try:
-                img = cv2.resize(cv2.imread(f".\\Data\\Stanford\\{name}\\{name}.{index}.jpg", cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
+                path = os.path.join(".", "Data", "Stanford", name, f"{name}.{index}.jpg")
+                img = cv2.resize(cv2.imread(path, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
                 data.append([img, int(name == 'mug')])
                 data.append([rotateImage(img, 10), int(name == 'mug')])
                 data.append([rotateImage(img, -10), int(name == 'mug')])

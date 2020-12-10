@@ -3,25 +3,26 @@ import cv2
 from settings import IMAGE_SIZE
 
 def clear_data():
-    # Load ImageNet
-    for name in os.listdir('.\\Data\\ImageNet\\'):
+    ''' Deletes corrupted files '''
+    # ImageNet
+    for name in os.listdir(os.path.join(".", "Data", "ImageNet")):
         try:
-            file_path = f".\\Data\\ImageNet\\{name}"
-            cv2.resize(cv2.imread(file_path, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
+            path = os.path.join(".", "Data", "ImageNet", name)
+            cv2.resize(cv2.imread(path, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
         except Exception:
-            os.remove(file_path)
-            print(f"Bad image: {file_path}")
+            os.remove(path)
+            print(f"Bad image: {path}")
 
-    # Load Stanford
+    # Stanford
     for name in ['mug', 'forks', 'keyboard', 'scissors', 'stapler']:
         for i in range(0, 200):
             index = str(i).zfill(3)
             try:
-                file_path = f".\\Data\\Stanford\\{name}\\{name}.{index}.jpg"
-                cv2.resize(cv2.imread(file_path, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
+                path = os.path.join(".", "Data", "Stanford", name, f"{name}.{index}.jpg")
+                cv2.resize(cv2.imread(path, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
 
             except Exception:
-                os.remove(file_path)
-                print(f"Bad image: {file_path}")
+                os.remove(path)
+                print(f"Bad image: {path}")
 
 clear_data()
