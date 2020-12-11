@@ -24,7 +24,8 @@ def load_training_data():
     data = []
 
     # Load ImageNet
-    for name in os.listdir(os.path.join(".", "Data", "ImageNet")):
+    files = os.listdir(os.path.join(".", "Data", "ImageNet"))
+    for name in files[:round(len(files) * .9)]:
         try:
             path = os.path.join(".", "Data", "ImageNet", name)
             img = cv2.resize(cv2.imread(path, cv2.IMREAD_GRAYSCALE), (IMAGE_SIZE, IMAGE_SIZE))
@@ -36,7 +37,7 @@ def load_training_data():
 
     # Load Stanford
     for name in ['mug', 'forks', 'keyboard', 'scissors', 'stapler', 'hammers', 'flipphones', 'pliers', 'telephone', 'watches']:
-        for i in range(0, 200):
+        for i in range(0, 180):
             index = str(i).zfill(3)
             try:
                 path = os.path.join(".", "Data", "Stanford", name, f"{name}.{index}.jpg")
