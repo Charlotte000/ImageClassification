@@ -14,4 +14,4 @@ Current staticsics are the following:
 
 | Precision | Recall | F measure |
 | --------- | ------ | --------- |
-| 0.8889    | 0.8739 | 0.8814    |
+| 0.8176    | 0.7031 | 0.756     |
