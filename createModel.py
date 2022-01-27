@@ -1,10 +1,7 @@
-import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow import keras
-from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
 
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 from random import shuffle
